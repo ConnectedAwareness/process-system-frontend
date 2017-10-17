@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit(form.value)" #form="ngForm">
+    <select id="usertype" name="usertype" required [(ngModel)]="connectee">
+    <option value="connectee" selected>Connectee</option>
+    <option value="connector">Connector</option>
+    <option value="admin">Admin</option>
+  </select>
+    <input type="text" name="username" id="username" required ngModel>
+    <input type="password" name="password" id="password" required ngModel>
+    <button type="submit" [disabled]="!form.valid">login</button>
+</form>
