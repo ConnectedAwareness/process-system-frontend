@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primary-50: #F1F8E9;
+$primary-100: #DCEDC8;
+$primary-200: #C5E1A5;
+$primary-300: #AED581;
+$primary-400: #9CCC65;
+$primary-500: #8BC34A;
+$primary-600: #7CB342;
+$primary-700: #689F38;
+$primary-800: #558B2F;
+$primary-900: #33691E;
+$primary-A100: #CCFF90;
+$primary-A200: #B2FF59;
+$primary-A400: #76FF03;
+$primary-A700: #64DD17;
+$grey-50: #FAFAFA;
+$grey-100: #F5F5F5;
+$grey-200: #EEEEEE;
+$grey-300: #E0E0E0;
+$grey-400: #BDBDBD;
+$grey-500: #9E9E9E;
+$grey-600: #757575;
+$grey-700: #616161;
+$grey-800: #424242;
+$grey-900: #212121;
+$black: black;
+$white: white;
+body,
+html {
+    font-family: 'Roboto', sans-serif;
+    background-color: $grey-100;
+}

@@ -1,0 +1,27 @@
+@import '../../../styles.scss';
+:host {
+    aside {
+        overflow: auto;
+        position: fixed;
+        width: 218.27px;
+        background-color: white;
+        height: calc(100vh - 56px);
+        h3 {
+            padding: 12px;
+            background-color: lightgrey;
+        }
+        li {
+            //padding: 12px;
+            list-style: none;
+            a {
+                display: block;
+                padding: 12px;
+            }
+        }
+    }
+    main {
+        position: absolute;
+        left: 218.27px;
+        width: calc(100% - 218.27px);
+    }
+}
