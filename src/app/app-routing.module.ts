@@ -1,3 +1,5 @@
+import { CoordinatorPageComponent } from './pages/coordinatorPage/coordinatorPage.component';
+import { ConnectorPageComponent } from './pages/connectorPage/connectorPage.component';
 import { SurveyPageComponent } from './pages/surveyPage/surveyPage.component';
 import { ConnecteePageComponent } from './pages/connecteePage/connecteePage.component';
 import { AdminPageComponent } from './pages/adminPage/adminPage.component';
@@ -12,19 +14,28 @@ const routes: Routes = [
   },
   {
     path: 'connectee',
-    component: ConnecteePageComponent
-  },
-  {
-    path: 'connectee/survey',
-    component: SurveyPageComponent
-  },
-  {
-    path: 'admin',
-    component: AdminPageComponent
+    children: [
+      {path: '', component: ConnecteePageComponent},
+      {path: 'survey', component: SurveyPageComponent}
+    ]
   },
   {
     path: 'connector',
-    component: LoginPageComponent
+    children: [
+      {path: '', component: ConnectorPageComponent},
+    ]
+  },
+  {
+    path: 'coordinator',
+    children: [
+      {path: '', component: CoordinatorPageComponent},
+    ]
+  },
+  {
+    path: 'admin',
+    children: [
+      {path: '', component: AdminPageComponent},
+    ]
   }
 ];
 

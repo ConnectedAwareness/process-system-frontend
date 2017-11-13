@@ -1,3 +1,5 @@
+import { CoordinatorPageComponent } from './pages/coordinatorPage/coordinatorPage.component';
+import { ConnectorPageComponent } from './pages/connectorPage/connectorPage.component';
 import { AsideCategoryComponent } from './components/asideCategory/asideCategory.component';
 import { SurveyPageComponent } from './pages/surveyPage/surveyPage.component';
 import { ConnecteePageComponent } from './pages/connecteePage/connecteePage.component';
@@ -22,7 +24,9 @@ import { AppComponent } from './app.component';
     NavigationComponent,
     ConnecteePageComponent,
     SurveyPageComponent,
-    AsideCategoryComponent
+    AsideCategoryComponent,
+    ConnectorPageComponent,
+    CoordinatorPageComponent
   ],
   imports: [
     BrowserModule,
