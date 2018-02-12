@@ -1,9 +1,0 @@
-<a (click)="toggle()"><i class="material-icons" [ngClass]="isOpen?'open':''">keyboard_arrow_right</i>{{category.name}}</a>
-<ul *ngIf="isOpen">
-    <li *ngFor="let p of category.pages">
-        <a>{{p.name}}</a>
-    </li>
-    <li *ngFor="let c of category.categories">
-        <app-aside-category [category]="c"></app-aside-category>
-    </li>
-</ul>
