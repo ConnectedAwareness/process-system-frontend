@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { LogService } from '../services/log.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginDialogComponent implements OnInit {
 
-  constructor() { }
+  email: String;
+  password: String;
+
+  constructor(private logService: LogService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(email: String, password: String){
+    this.logService.login(email, password);
   }
 
 }
