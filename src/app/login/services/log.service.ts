@@ -7,27 +7,34 @@ import { logging } from 'selenium-webdriver';
 
 @Injectable()
 export class LogService {
-  constructor(private http: HttpClient) {
+  constructor(private _http: HttpClient) {
   }
 
   login(email: String, password: String) {
+    console.log('login');
+    console.log(email);
+    console.log(password);
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'})
+        'Access-Control-Allow-Origin': '*'
+      })
     };
 
-    this.http.post('http://localhost:3000/login', {
+    console.log(httpOptions);
+
+    this._http.post('http://localhost:3000/login', {
       email: email,
       password: password
     }, httpOptions).toPromise().then((res) => {
-      console.log(res)
+      console.log('post response');
+      console.log(res);
     }).catch((err) => {
-      console.log('err:');
-      console.log(err)
-    })
-    console.log(email)
+      console.error('err:');
+      console.error(err);
+    });
+    console.log(email);
     console.log(password);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
+import { LoginDialogComponent } from './login/components/login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-root',
