@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { LoginDialogComponent } from './login/components/login-dialog/login-dialog.component';
+import { SignUpComponent } from './login/components/sign-up/sign-up.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,12 @@ export class AppComponent implements OnInit {
   ) { }
 
   openSignUp() {
-    // Todo: create sign up form
+    const loginDialogRef = this._dialog.open(SignUpComponent, {
+    });
+    loginDialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.name = 'not logged in';
+    });
   }
   openLogin(): void {
     const loginDialogRef = this._dialog.open(LoginDialogComponent, {

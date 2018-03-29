@@ -5,8 +5,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { log } from 'util';
 import { logging } from 'selenium-webdriver';
 
+const path = 'http://localhost:3000/login';
+
 @Injectable()
 export class LogService {
+
   constructor(private _http: HttpClient) {
   }
 
@@ -24,7 +27,7 @@ export class LogService {
 
     console.log(httpOptions);
 
-    this._http.post('http://localhost:3000/login', {
+    this._http.post(path, {
       email: email,
       password: password
     }, httpOptions).toPromise().then((res) => {

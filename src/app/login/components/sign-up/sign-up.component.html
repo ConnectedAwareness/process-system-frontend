@@ -1,13 +1,15 @@
-<h2 mat-dialog-title>Login</h2>
+<h2 mat-dialog-title>Sign Up</h2>
 <mat-dialog-content>
-    <form [formGroup]="userLoginForm">
+    <form [formGroup]="signUpForm">
         <mat-form-field>
             <input type="email" matInput placeholder="Email" formControlName="email">
         </mat-form-field>
         <mat-form-field>
             <input type="password" matInput placeholder="Password" formControlName="password">
-
         </mat-form-field>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Repeat Password" formControlName="repeatPassword">
+      </mat-form-field>
         <!-- <mat-dialog-actions> -->
         <button mat-button mat-dialog-close>Cancel</button>
         <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->

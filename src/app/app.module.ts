@@ -17,6 +17,7 @@ import { UserListComponent } from './user/components/user-list/user-list.compone
 import { UserDetailComponent } from './user/components/user-detail/user-detail.component';
 import { UserService } from './user/services/user.service';
 import { AppRoutingModule } from './app-routing.module';
+import { SignUpComponent } from './login/components/sign-up/sign-up.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AppRoutingModule } from './app-routing.module';
     StartPageComponent,
     LoginDialogComponent,
     UserListComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

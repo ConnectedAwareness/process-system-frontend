@@ -41,5 +41,4 @@ export class LoginDialogComponent implements OnInit {
     this.currentUser.password = this.userLoginForm.value.password;
     this._logService.login(this.currentUser.email, this.currentUser.password);
   }
-
 }
