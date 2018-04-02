@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { LoginDialogComponent } from './login/components/login-dialog/login-dialog.component';
 import { SignUpComponent } from './login/components/sign-up/sign-up.component';
+import { LogService } from './login/services/log.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit {
   password: string = null;
 
   constructor(
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _logService: LogService
   ) { }
 
   openSignUp() {

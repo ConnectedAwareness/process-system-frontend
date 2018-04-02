@@ -7,7 +7,8 @@
     </nav>
     <span class="cap-spacer"></span>
     <button mat-button (click)="openSignUp()">Sign up</button>
-    <button mat-button (click)="openLogin()">Login</button>
+    <button mat-button (click)="openLogin()" *ngIf="!this._logService.isUserSet()">Login</button>
+    <button mat-button (click)="this._logService.logout()" *ngIf="this._logService.isUserSet()">Logout</button>
 </mat-toolbar>
 <section>
     <router-outlet></router-outlet>

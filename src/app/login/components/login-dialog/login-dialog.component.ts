@@ -39,6 +39,10 @@ export class LoginDialogComponent implements OnInit {
   onSubmit() {
     this.currentUser.email = this.userLoginForm.value.email;
     this.currentUser.password = this.userLoginForm.value.password;
-    this._logService.login(this.currentUser.email, this.currentUser.password);
+    this._logService.login(this.currentUser.email, this.currentUser.password).then((res)=>{
+      console.log('res:',res)
+    }).catch((err)=>{
+      console.log('err', err)
+    })
   }
 }

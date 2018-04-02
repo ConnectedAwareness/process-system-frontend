@@ -1,43 +1,80 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { log } from 'util';
-import { logging } from 'selenium-webdriver';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { log } from "util";
+import { logging } from "selenium-webdriver";
 
-const path = 'http://localhost:3000/login';
+const path = "http://localhost:3000";
 
+class User {
+  constructor(
+    public alias: string,
+    public email: string,
+    public first_name: string,
+    public id: string,
+    public last_name: string,
+    public roles: string[],
+    public token: string
+  ) {}
+}
+// TODO: localStorage
 @Injectable()
 export class LogService {
+  private user: User;
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient) {}
+
+  isUserSet(): boolean {
+    return this.user != null;
   }
 
-  login(email: String, password: String) {
-    console.log('login');
-    console.log(email);
-    console.log(password);
+  setUser(user: User): void {
+    this.user = user;
+  }
 
+  logout() {
+    console.log(this.user)
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "apikey": this.user.token
       })
     };
 
-    console.log(httpOptions);
+    return this._http
+      .post(path+'/logout', {id: this.user.id}, httpOptions)
+      .toPromise()
+      .then(res => {
+        console.log(res);
+        this.user = undefined;
+      }).catch((err)=>{
+        console.log(err)
+        this.user = undefined;
+      });
+  }
 
-    this._http.post(path, {
-      email: email,
-      password: password
-    }, httpOptions).toPromise().then((res) => {
-      console.log('post response');
-      console.log(res);
-    }).catch((err) => {
-      console.error('err:');
-      console.error(err);
-    });
-    console.log(email);
-    console.log(password);
+  login(email: String, password: String): Promise<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      })
+    };
+
+    let userData = { email: email, password: password };
+
+    return this._http
+      .post(path+'/login', userData, httpOptions)
+      .toPromise()
+      .then(res => {
+        console.log(res["user"]);
+        if (!res["user"])
+          throw new Error("User does not exist!");
+        this.setUser(res["user"]);
+        console.log(this.user)
+        return this.user.token;
+      });
   }
 }
