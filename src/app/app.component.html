@@ -1,16 +1,15 @@
 <mat-toolbar color="primary">
     <div>CAP</div>
     <span class="cap-spacer"></span>
-    <nav>
+    <nav *ngIf="this._logService.isUserSet()">
         <a mat-button routerLink="/start">Start</a>
         <a mat-button routerLink="/users">Users</a>
     </nav>
     <span class="cap-spacer"></span>
     <button mat-button (click)="openSignUp()">Sign up</button>
     <button mat-button (click)="openLogin()" *ngIf="!this._logService.isUserSet()">Login</button>
-    <button mat-button (click)="this._logService.logout()" *ngIf="this._logService.isUserSet()">Logout</button>
+    <button mat-button (click)="logout()" *ngIf="this._logService.isUserSet()">Logout</button>
 </mat-toolbar>
 <section>
     <router-outlet></router-outlet>
 </section>
-

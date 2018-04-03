@@ -4,6 +4,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { LoginDialogComponent } from './login/components/login-dialog/login-dialog.component';
 import { SignUpComponent } from './login/components/sign-up/sign-up.component';
 import { LogService } from './login/services/log.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private _dialog: MatDialog,
-    private _logService: LogService
+    private _logService: LogService,
+    private router: Router
   ) { }
 
   openSignUp() {
@@ -35,6 +37,10 @@ export class AppComponent implements OnInit {
       console.log('The dialog was closed');
       this.name = 'not logged in';
     });
+  }
+  logout() {
+    this.router.navigate(['/'])
+    this._logService.logout()
   }
   ngOnInit() {
   }

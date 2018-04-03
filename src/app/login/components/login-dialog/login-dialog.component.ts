@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, RequiredValidator } from '@angular/
 import { LogService } from '../../services/log.service';
 import { User } from '../../../user/models/user.model';
 import { UserService } from '../../../user/services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-dialog',
@@ -13,11 +14,15 @@ export class LoginDialogComponent implements OnInit {
 
   currentUser: User;
   userLoginForm: FormGroup;
+  error: Error;
+  loading: boolean;
 
   constructor(
     private _logService: LogService,
     private _formBuilder: FormBuilder,
-    private _userService: UserService
+    private _userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.createForm();
   }
@@ -37,12 +42,16 @@ export class LoginDialogComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
+    this.error = undefined;
     this.currentUser.email = this.userLoginForm.value.email;
     this.currentUser.password = this.userLoginForm.value.password;
     this._logService.login(this.currentUser.email, this.currentUser.password).then((res)=>{
-      console.log('res:',res)
+      this.loading = false;
+      this.router.navigate(['/main'])
     }).catch((err)=>{
-      console.log('err', err)
+      this.error = err
+      this.loading = false;
     })
   }
 }

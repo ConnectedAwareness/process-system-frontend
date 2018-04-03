@@ -9,8 +9,10 @@
 
         </mat-form-field>
         <!-- <mat-dialog-actions> -->
-        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]>Cancel</button>
         <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-        <button mat-button [mat-dialog-close] type="submit" (click)="onSubmit()">Login</button>
+        <button mat-button type="submit" (click)="onSubmit()">Login</button>
+        <p *ngIf="error">{{error.message}}</p>
+        <p *ngIf="loading">loadinganimation</p>
     </form>
 </mat-dialog-content>

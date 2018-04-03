@@ -18,12 +18,14 @@ import { UserDetailComponent } from './user/components/user-detail/user-detail.c
 import { UserService } from './user/services/user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { SignUpComponent } from './login/components/sign-up/sign-up.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     StartPageComponent,
+    MainPageComponent,
     LoginDialogComponent,
     UserListComponent,
     UserDetailComponent,
