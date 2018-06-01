@@ -25,6 +25,14 @@ export class LogService {
 
   constructor(private _http: HttpClient) {}
 
+  public getHeader(): HttpHeaders{
+    return new HttpHeaders({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "apikey": this.user.token
+    })
+  }
+
   isUserSet(): boolean {
     return this.user != null;
   }
@@ -34,14 +42,7 @@ export class LogService {
   }
 
   logout() {
-    console.log(this.user)
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "apikey": this.user.token
-      })
-    };
+    const httpOptions = { headers: this.getHeader() }
 
     return this._http
       .post(path+'/logout', {id: this.user.id}, httpOptions)

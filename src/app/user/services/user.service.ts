@@ -5,7 +5,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { of } from 'rxjs/observable/of';
 
 import { User } from '../models/user.model';
+import { LogService } from '../../login/services/log.service';
 
+const path = "http://localhost:3000";
 @Injectable()
 export class UserService {
 
@@ -14,10 +16,17 @@ export class UserService {
   private _currentUserStream = new BehaviorSubject<User>(this._currentUser);
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    private _logService: LogService
   ) { }
 
   getUsers(): Observable<User[]> {
+    
+    // const httpOptions = { headers: this._logService.getHeader() }
+    // this._http
+      // .post(path+'/logout', {id: this.user.id}, httpOptions)
+      // .toPromise()
+
     return this._http.get<User[]>(this.usersUrl);
   }
   setUser = (currentUser: User) => {
@@ -27,4 +36,5 @@ export class UserService {
   getCurrentUser(): Observable<User> {
     return this._currentUserStream.asObservable();
   }
+  
 }

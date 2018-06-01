@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StartPageComponent } from './pages/start-page/start-page.component';
 import { UserListComponent } from './user/components/user-list/user-list.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { OrganisationsPageComponent } from './pages/list-pages/organisations-page/organisations-page.component';
 
 const routes: Routes = [
   {
@@ -16,13 +17,17 @@ const routes: Routes = [
     component: StartPageComponent
   },
   {
+    path: 'organisations',
+    component: OrganisationsPageComponent
+  },
+  {
     path: 'users',
     component: UserListComponent
   },
   {
     path: 'main',
     component: MainPageComponent
-  },
+  }
 ];
 
 @NgModule({

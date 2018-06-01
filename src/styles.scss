@@ -1,7 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+$primary: #efefef;//#879797;
+$primary-invert: #8b9a9a;
+
+$success: #6e8b1f;
+$success-invert: #fff;
+
+$info: #6390b0;
+$info-light: #d0e6f6;
+$info-invert: #fff;
+
+$danger: #ab4b52;
+$danger-invert: #fff;
+
+$warning: #f8b132;
+$warning-invert: #000;
+
+// $c: #efefef, #f4f4f3, #f7f7f7;
 
 body {
-    margin: 0;
-    padding: 0;
+    font-family: 'Lato', sans-serif;
 }

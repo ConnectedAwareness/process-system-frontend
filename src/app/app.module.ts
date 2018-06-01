@@ -1,25 +1,33 @@
-import { LogService } from './login/services/log.service';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule, MatCheckboxModule, MatIconModule, MatToolbarModule, MatDialogModule, MatInputModule } from '@angular/material';
+import { LogService } from "./login/services/log.service";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatDialogModule,
+  MatInputModule
+} from "@angular/material";
 
 // only for development
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataService } from './in-memory-data.service';
 
-import { AppComponent } from './app.component';
-import { StartPageComponent } from './pages/start-page/start-page.component';
-import { LoginDialogComponent } from './login/components/login-dialog/login-dialog.component';
-import { UserListComponent } from './user/components/user-list/user-list.component';
-import { UserDetailComponent } from './user/components/user-detail/user-detail.component';
-import { UserService } from './user/services/user.service';
-import { AppRoutingModule } from './app-routing.module';
-import { SignUpComponent } from './login/components/sign-up/sign-up.component';
-import { MainPageComponent } from './pages/main-page/main-page.component';
-
+import { AppComponent } from "./app.component";
+import { StartPageComponent } from "./pages/start-page/start-page.component";
+import { LoginDialogComponent } from "./login/components/login-dialog/login-dialog.component";
+import { UserListComponent } from "./user/components/user-list/user-list.component";
+import { UserDetailComponent } from "./user/components/user-detail/user-detail.component";
+import { UserService } from "./user/services/user.service";
+import { AppRoutingModule } from "./app-routing.module";
+import { SignUpComponent } from "./login/components/sign-up/sign-up.component";
+import { MainPageComponent } from "./pages/main-page/main-page.component";
+import { OrganisationsPageComponent } from "./pages/list-pages/organisations-page/organisations-page.component";
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +37,10 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     LoginDialogComponent,
     UserListComponent,
     UserDetailComponent,
-    SignUpComponent
-  ],
+    OrganisationsPageComponent,
+    SignUpComponent,
+    NavigationComponent
+],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -43,16 +53,17 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // ),
-    MatButtonModule, MatCheckboxModule, MatIconModule, MatToolbarModule, MatDialogModule, MatInputModule, AppRoutingModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatInputModule,
+    AppRoutingModule,
     AppRoutingModule
   ],
-  entryComponents: [
-    LoginDialogComponent
-  ],
-  providers: [
-    UserService,
-    LogService
-  ],
-  bootstrap: [ AppComponent ]
+  entryComponents: [LoginDialogComponent],
+  providers: [UserService, LogService],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
