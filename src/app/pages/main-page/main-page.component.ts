@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LogService } from '../../login/services/log.service';
 import { Router } from '@angular/router';
+import { AuthentificationService } from '../../shared/services/authentification.service';
 
 @Component({
   selector: 'app-main-page',
@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 export class MainPageComponent implements OnInit {
 
   constructor(
-    private _logService: LogService,
-    private router: Router
+    private router: Router, private auth: AuthentificationService
   ) { }
 
   ngOnInit() {
-    if(!this._logService.isUserSet()){
-      this.router.navigate(['/'])
-    }
+    
+    // if(!this.auth.loggedIn()) {
+    //   this.router.navigate(['/'])
+    // }
   }
 
 }

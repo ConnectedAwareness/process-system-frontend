@@ -1,0 +1,106 @@
+<!-- <header>
+    <a class="logo" routerLink="main">
+        <img src="assets/images/logo.svg" alt="">
+    </a>
+    <a (click)="toggle(true)" class="material-icons">
+        menu
+    </a>
+    <a (click)="toggle(false)" class="material-icons" *ngIf="!auth.loginData">
+        account_box
+    </a>
+    <a (click)="auth.logOut()" class="material-icons" *ngIf="auth.loginData">
+        exit_to_app
+    </a>
+</header>
+<nav class="body" [ngClass]="navigationState">
+    <ul>
+        <li *ngFor="let nav of possibleNavigations"><a routerLink="{{nav.link}}">{{nav.name}}</a></li>
+    </ul>
+</nav>
+<div class="body" [ngClass]="loginState">
+    <div class="container">
+        <h1>Anmelden</h1>
+        <form [formGroup]="formdata" #userLogin = "ngForm" (ngSubmit)="onSubmit()">
+            <input type="text" name="organisation" formControlName="organisation" placeholder="Organisation" required>
+            <input type="email" name="email" formControlName="email" placeholder="email" required>
+            <input type="password" name="password" formControlName="password" placeholder="Password" required>
+
+            <button type="submit" class="btn btn-success" [disabled]="!formdata.valid">Anmelden</button>
+        </form>
+    </div>
+</div> -->
+
+<nav class="navbar is-primary">
+    <div class="navbar-brand">
+      <a class="navbar-item"  routerLink="main">
+        <img src="assets/images/logo.svg" alt="">
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="https://bulma.io/">
+          Home
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="/documentation/overview/start/">
+            Docs
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="/documentation/overview/start/">
+              Overview
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
+              Modifiers
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
+              Columns
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
+              Layout
+            </a>
+            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
+              Form
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
+              Elements
+            </a>
+            <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
+              Components
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
+                <span class="icon">
+                    <i class="material-icons">face</i>
+                </span>
+                <span>
+                  Tweet
+                </span>
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-primary" href="https://github.com/jgthms/bulma/releases/download/0.7.1/bulma-0.7.1.zip">
+                <span class="icon">
+                  <i class="fas fa-download"></i>
+                </span>
+                <span>Download</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>

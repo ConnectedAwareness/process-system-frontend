@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <td>
+        <a class="table-selector disabled"></a>
+      </td>
+      <td *ngFor="let struct of structure">
+        {{struct.label}}
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr></tr>
+    <tr *ngFor="let data of content; let i = index" [ngClass]="{'selected' : i == selectedRow}">
+      <td>
+        <a class="table-selector" (click)="select(i)"></a>
+      </td>
+      <td *ngFor="let struct of structure">
+        <a *ngIf="struct.type!='array'">{{data[struct.key]}}</a>
+        <a *ngIf="struct.type=='array'" routerLink="./{{data.id}}/{{struct.key}}">{{struct.label}}[{{data[struct.key].length}}]</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

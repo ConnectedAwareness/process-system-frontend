@@ -1,0 +1,115 @@
+@import "./../../../styles";
+// :host {
+//   position: fixed;
+//   width: 100%;
+//   background-color: $primary-invert;
+//   header {
+//     z-index: 1000;
+//     box-shadow: 0px 4px 8px 0px #00000030;
+//     height: 56px;
+//     a {
+//       box-sizing: border-box;
+//       display: block;
+//       padding: 12px;
+//       width: 56px;
+//       height: 56px;
+//       &.logo {
+//         float: left;
+//       }
+//       img {
+//         display: block;
+//         width: 32px;
+//         height: 32px;
+//       }
+//       &.material-icons {
+//         float: right;
+//         font-size: 32px;
+//         color: white;
+//         cursor: pointer;
+//         &:hover {
+//           background-color: #00000012;
+//         }
+//         &:active {
+//           background-color: #00000026;
+//         }
+//       }
+//     }
+//   }
+//   nav {
+//     z-index: 999;
+//     ul {
+//       padding: 0;
+//       width: 400px;
+//       margin-top: calc(50vh - 200px);
+//       margin-left: calc(50% - 200px);
+//       text-align: center;
+//       li {
+//         font-size: 1.5rem;
+//         color: white;
+//         list-style: none;
+//         a {
+//           padding: 0.5rem;
+//           display: block;
+//         }
+//       }
+//     }
+//     background-color: #00000012;
+//   }
+//   div.body {
+    
+//     background-color: $primary-invert;
+//   }
+//   .body {
+//     overflow: hidden;
+//     transition: height 1s;
+//     &.open {
+//       height: calc(100vh - 56px);
+//     }
+//     &.close {
+//       height: 0;
+//     }
+//     &.inClose {
+//       height: 0;
+//     }
+//     &.inOpen {
+//       height: calc(100vh - 56px);
+//     }
+
+//     .container {
+//       color: white;
+//       text-align: center;
+//       width: 400px;
+//       margin-left: calc(50% - 200px);
+//       margin-top: calc(50vh - 138px - 28px);
+//       form {
+//         position: relative;
+//         box-sizing: border-box;
+//         padding: 1rem;
+//         width: 100%;
+//         input {
+//           border: none;
+//           margin-bottom: 1rem;
+//           position: relative;
+//           width: 100%;
+//           font-size: 1.2rem;
+//           padding: 0.4rem;
+//           box-sizing: border-box;
+//           &:focus {
+//             outline: none;
+//             background-color: $info-light;
+//           }
+//         }
+//         button {
+//           border: none;
+//           background-color: white;
+//           font-size: 1.2rem;
+//           padding: 0.4rem;
+//           &:focus {
+//             outline: none;
+//             background-color: $info-light;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
