@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { StartPageComponent } from '../pages/start-page/start-page.component';
-import { MainPageComponent } from '../pages/main-page/main-page.component';
+import { MainPageComponent } from './pages/main/main-page.component';
+import { LoginPageComponent } from './pages/login/login-page.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/start',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
-    path: 'start',
-    component: StartPageComponent
+    path: 'login',
+    component: LoginPageComponent
   },
   {
     path: 'main',
-    component: MainPageComponent
+    component: MainPageComponent,
+    canActivate: [AuthGuard]
   }
   // ,
   // {
