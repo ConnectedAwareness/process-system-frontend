@@ -1,7 +1,0 @@
-<h1>Organisationen</h1>
-<ca-dynamic-table [structure]="organisationStructure" [content]="organisationData" (selected)="onSelectRow($event)"></ca-dynamic-table>
-<div>
-  <button>hinzufügen</button>
-  <button *ngIf="selectedOrganisation" routerLink="./{{this.selectedOrganisation['id']}}" >bearbeiten</button>
-  <button *ngIf="selectedOrganisation" (click)="delete()">löschen</button>
-</div>
