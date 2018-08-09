@@ -1,3 +1,4 @@
+import { AuthService } from './shared/services/auth/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,21 +12,21 @@ import { CookieModule } from 'ngx-cookie';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthentificationService } from './shared/services/authentification.service';
 import { OrganisationService } from './shared/services/organisation.service';
 import { UserService } from './shared/services/user.service';
 import { DynamicModule } from './shared/data-mgmt/dynamic/dynamic.module';
 
 // Pages
-import { StartPageComponent } from '../pages/start-page/start-page.component';
-import { NavigationComponent } from './shared/navigation/navigation.component';
-import { MainPageComponent } from '../pages/main-page/main-page.component';
+import { NavigationComponent } from './shared/components/navigation/navigation.component';
+import { MainPageComponent } from './pages/main/main-page.component';
+import { LoginPageComponent } from './pages/login/login-page.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StartPageComponent,
     MainPageComponent,
+    LoginPageComponent,
     NavigationComponent
 ],
   imports: [
@@ -45,7 +46,7 @@ import { MainPageComponent } from '../pages/main-page/main-page.component';
     DynamicModule
   ],
   entryComponents: [],
-  providers: [AuthentificationService, OrganisationService, UserService],
+  providers: [AuthService, OrganisationService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
