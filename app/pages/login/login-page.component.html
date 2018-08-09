@@ -1,0 +1,39 @@
+<div class="card">
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="card-content">
+      <h1>Login</h1>
+    <div class="field">
+      <p class="control">
+        <input
+          class="input"
+          type="email"
+          placeholder="Email"
+          required
+          [(ngModel)]="loginModel.email"
+          name="email"
+        >
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <input
+          class="input"
+          type="password"
+          placeholder="Password"
+          required
+          [(ngModel)]="loginModel.password"
+          name="password"
+        >
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <button type="submit" class="button is-text">
+          SignUp
+        </button>
+        <button class="button is-primary">
+          Login
+        </button>
+      </p>
+    </div>
+  </form>
+</div>

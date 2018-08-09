@@ -1,0 +1,32 @@
+<nav class="navbar is-primary">
+    <div class="navbar-brand">
+      <a class="navbar-item"  routerLink="main">
+        <img src="assets/images/logo.svg" alt="">
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control" *ngIf="this.auth.loginState()">
+              <button class="button is-primary" (click)="this.auth.logout()">
+                <!-- <span class="icon">
+                    <i class="material-icons">face</i>
+                </span> -->
+                <span>
+                  Logout
+                </span>
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
