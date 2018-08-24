@@ -20,6 +20,7 @@ import { DynamicModule } from './shared/data-mgmt/dynamic/dynamic.module';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
 import { MainPageComponent } from './pages/main/main-page.component';
 import { LoginPageComponent } from './pages/login/login-page.component';
+import { ProfilePageComponent } from './pages/profile/profile-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
     AppComponent,
     MainPageComponent,
     LoginPageComponent,
+    ProfilePageComponent,
     NavigationComponent
 ],
   imports: [

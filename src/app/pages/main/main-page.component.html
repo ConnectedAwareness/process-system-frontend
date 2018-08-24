@@ -1,1 +1,18 @@
-<p>main</p>
+<section class="section">
+    <div class="container">
+        <h1 class="title">Herzlich Willkommen!</h1>
+        <h2 class="subtitle">
+            Auf dieser Seite befinden sich Verweise auf folgende Aktionen:
+        </h2>
+        <div class="columns" *ngFor="let column of links">
+            <div class="column" *ngFor="let link of column">
+              <a class="box" routerLink="/{{link.link}}">
+                <p class="title">{{link.title}}</p>
+                <p class="content">
+                    {{link.description}}
+                </p>
+              </a>
+            </div>
+        </div>
+    </div>
+</section>

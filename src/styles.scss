@@ -104,11 +104,11 @@ $warning-invert: #000;
 // $danger: $orange; // Use the existing orange
 // $family-primary: $family-serif; // Use the new serif family
 
-@import './node_modules/bulma/sass/base/_all.sass';
-@import './node_modules/bulma/sass/elements/_all.sass';
-@import './node_modules/bulma/sass/components/_all.sass';
-@import './node_modules/bulma/sass/layout/_all.sass';
-
+// @import './node_modules/bulma/sass/base/_all.sass';
+// @import './node_modules/bulma/sass/elements/_all.sass';
+// @import './node_modules/bulma/sass/components/_all.sass';
+// @import './node_modules/bulma/sass/layout/_all.sass';
+@import './node_modules/bulma/bulma.sass';
 
 html {
   background-color: $light;

@@ -12,18 +12,25 @@ export class LoginPageComponent implements OnInit {
   loginModel: AuthStructure;
   constructor(private auth: AuthService, private router: Router) {
     this.loginModel = new AuthStructure();
+    if (this.auth.loginState()) {
+      this.navigateToNextPage();
+    }
   }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    console.log(this.loginModel);
     this.auth.login(this.loginModel).subscribe((res) => {
       if (res) {
-        this.router.navigate(['/main']);
+        this.navigateToNextPage();
       }
     });
+  }
+
+  navigateToNextPage() {
+    const route: string = this.auth.getInterruptedRoute() || '/main';
+    this.router.navigate(['/main']);
   }
 
 }

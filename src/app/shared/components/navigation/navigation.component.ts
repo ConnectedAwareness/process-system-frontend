@@ -11,7 +11,7 @@ enum BodyState {
 }
 
 @Component({
-  selector: 'app-navigation',
+  selector: 'ca-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })

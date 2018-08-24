@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './pages/main/main-page.component';
 import { LoginPageComponent } from './pages/login/login-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { ProfilePageComponent } from './pages/profile/profile-page.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainPageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile',
+    component: ProfilePageComponent,
     canActivate: [AuthGuard]
   }
   // ,
