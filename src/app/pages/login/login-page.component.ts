@@ -10,6 +10,7 @@ import { AuthStructure } from '../../shared/services/auth/authStructure.class';
 })
 export class LoginPageComponent implements OnInit {
   loginModel: AuthStructure;
+  remember: boolean;
   constructor(private auth: AuthService, private router: Router) {
     this.loginModel = new AuthStructure();
     if (this.auth.loginState()) {
@@ -21,7 +22,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit() {
-    this.auth.login(this.loginModel).subscribe((res) => {
+    this.auth.login(this.loginModel, this.remember).subscribe((res) => {
       if (res) {
         this.navigateToNextPage();
       }
@@ -29,8 +30,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   navigateToNextPage() {
-    const route: string = this.auth.getInterruptedRoute() || '/main';
-    this.router.navigate(['/main']);
+    this.router.navigate([this.auth.getInterruptedRoute() || '/main']);
   }
 
 }

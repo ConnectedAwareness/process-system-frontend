@@ -1,1 +1,9 @@
 @import "./../../../styles";
+:host {
+  .card {
+    position: absolute;
+    top: calc(50vh - 120px + 25px);
+    width: 400px;
+    left: calc(50% - 200px);
+  }
+}

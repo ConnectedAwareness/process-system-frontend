@@ -19,10 +19,11 @@ export class AuthService {
   checkRoute(route: ActivatedRouteSnapshot): Observable<boolean> {
     return new Observable((obs) => {
       if (!!this.user) { // TODO: check if rout is valid
-        this.interruptedPath = route.routeConfig.path;
         obs.next(true);
         // setTimeout(() => { obs.next(true); }, 2000);
       } else {
+        console.log(route.routeConfig)
+        this.interruptedPath = '/'+route.routeConfig.path;
         obs.next(false);
         // setTimeout(() => { obs.next(false); }, 2000);
       }
@@ -34,11 +35,13 @@ export class AuthService {
   loginState(): boolean {
     return !!this.user && !!this.user.email && !!this.user.password;
   }
-  login(user: AuthStructure): Observable<boolean> {
+  login(user: AuthStructure, remember: boolean): Observable<boolean> {
     return new Observable((obs) => {
       // TODO: real auth
       this.user = user;
-      this.cookieService.putObject(token_key, this.user);
+      if(remember) {
+        this.cookieService.putObject(token_key, this.user);
+      }
       obs.next(!!user && !!user.email && !!user.password);
     });
   }
