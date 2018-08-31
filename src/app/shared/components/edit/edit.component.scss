@@ -1,0 +1,11 @@
+@import "./../../../../styles";
+:host {
+  position: fixed;
+  top: 52px;
+  width: 100%;
+  height: calc(100vh - 52px);
+  background-color: #d9d9d9e3;
+  .container {
+    padding-top: 50px;
+  }
+}

@@ -27,7 +27,7 @@
             </span>
           </p>
           <h3>Password</h3>
-          <a class="button is-primary">zurücksetzen</a>
+          <a class="button is-primary" (click)="inResetMode=true">zurücksetzen</a>
         </div>
       </div>
       <div class="column is-half">
@@ -47,6 +47,42 @@
     </div>
   </div>
 </section>
+<ca-edit *ngIf="inResetMode">
+  <h1 class="title">Passwort bearbeiten</h1>
+  <div class="card">
+    <div class="card-content">
+      <form (ngSubmit)="reset()" #ResetPasswordForm="ngForm" class="card-content">
+        <div class="field">
+          <p class="control">
+            <input class="input" type="password" placeholder="Altes Passwort" required [(ngModel)]="restModel.oldPassword" name="oldPassword">
+          </p>
+        </div>
+        <div class="field">
+          <p class="control">
+            <input class="input" type="password" placeholder="Neues Passwort" required [(ngModel)]="restModel.newPassword" name="newPassword">
+          </p>
+        </div>
+        <div class="field">
+          <p class="control">
+            <input class="input" type="password" placeholder="Neues Passwort wiederholen" required [(ngModel)]="restModel.confirmation" name="confirmation">
+          </p>
+        </div>
+        <div class="field">
+          <p class="help is-danger" *ngIf="resetError">{{resetError.message}}</p>
+        </div>
+        <div class="field">
+            
+          <p class="control">
+             
+            <button type="submit" [disabled]="restModel.invalid" class="button is-primary">
+              Login
+            </button>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</ca-edit>
 <!-- <div class="fullscreen-overlay">
   <div class="card">
     <header class="card-header">

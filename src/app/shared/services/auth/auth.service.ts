@@ -48,7 +48,6 @@ export class AuthService {
           throw new Error(!!data.message? data.message: '500: Server error');
         }
         this.user = getUserFromToken(data.token);
-        console.log(this.user);
         
         if(remember) {
           this.cookieService.putObject(token_key, this.user);

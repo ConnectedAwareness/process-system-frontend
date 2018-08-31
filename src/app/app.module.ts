@@ -22,6 +22,7 @@ import { MainPageComponent } from './pages/main/main-page.component';
 import { LoginPageComponent } from './pages/login/login-page.component';
 import { ProfilePageComponent } from './pages/profile/profile-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { EditComponent } from './shared/components/edit/edit.component';
 
 const pageComponents = [
   MainPageComponent,
@@ -33,7 +34,8 @@ const pageComponents = [
   declarations: [
     AppComponent,
     pageComponents,
-    NavigationComponent
+    NavigationComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
