@@ -8,7 +8,7 @@
           type="email"
           placeholder="Email"
           required
-          [(ngModel)]="loginModel.email"
+          [(ngModel)]="model.email"
           name="email"
         >
       </p>
@@ -20,7 +20,7 @@
           type="password"
           placeholder="Password"
           required
-          [(ngModel)]="loginModel.password"
+          [(ngModel)]="model.password"
           name="password"
         >
       </p>
@@ -30,20 +30,21 @@
         <input
           type="checkbox"
           name="remember"
-          [(ngModel)]="remember"
+          [(ngModel)]="model.remember"
         >
         Anmeldung merken
       </p>
     </div>
     <div class="field">
       <p class="control">
-        <button type="submit" class="button is-text">
+        <button class="button is-text">
           SignUp
         </button>
-        <button class="button is-primary">
+        <button type="submit" [disabled]="loginForm.invalid" class="button is-primary">
           Login
         </button>
       </p>
+      <p class="help is-danger" *ngIf="!!error">{{error.message}}</p>
     </div>
   </form>
 </div>

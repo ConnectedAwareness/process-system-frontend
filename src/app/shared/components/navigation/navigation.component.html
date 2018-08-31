@@ -15,7 +15,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="field is-grouped">
-            <p class="control" *ngIf="this.auth.loginState()">
+            <p class="control" *ngIf="this.auth.userExists()">
               <button class="button is-primary" (click)="this.auth.logout()">
                 <!-- <span class="icon">
                     <i class="material-icons">face</i>

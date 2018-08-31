@@ -1,32 +1,44 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../shared/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { AuthStructure } from '../../shared/services/auth/authStructure.class';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'ca-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  loginModel: AuthStructure;
-  remember: boolean;
+  error: string;
+  model: {email?: string, password?: string, remember?: boolean};
+  loginForm: FormGroup;
   constructor(private auth: AuthService, private router: Router) {
-    this.loginModel = new AuthStructure();
-    if (this.auth.loginState()) {
+    this.model = {};
+    if (this.auth.userExists) {
       this.navigateToNextPage();
     }
   }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      'email': new FormControl(this.model.email, [
+        Validators.required
+      ]),
+      'password': new FormControl(this.model.password, [
+        Validators.required
+      ]),
+      'remember': new FormControl(this.model.remember)
+    });
   }
 
   onSubmit() {
-    this.auth.login(this.loginModel, this.remember).subscribe((res) => {
-      if (res) {
-        this.navigateToNextPage();
+      this.auth.login(this.model.email, this.model.password, !!this.model.remember).subscribe((res) => {
+        if (res) {
+          this.navigateToNextPage();
+        }
+      },(err)=>{
+        this.error = err;
       }
-    });
+    );
   }
 
   navigateToNextPage() {

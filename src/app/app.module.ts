@@ -23,14 +23,18 @@ import { LoginPageComponent } from './pages/login/login-page.component';
 import { ProfilePageComponent } from './pages/profile/profile-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 
+const pageComponents = [
+  MainPageComponent,
+  LoginPageComponent,
+  ProfilePageComponent
+]
+
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageComponent,
-    LoginPageComponent,
-    ProfilePageComponent,
+    pageComponents,
     NavigationComponent
-],
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -51,4 +55,4 @@ import { AuthGuard } from './shared/guards/auth.guard';
   providers: [AuthService, OrganisationService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

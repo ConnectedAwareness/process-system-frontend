@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'ca-profile-page',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) {
+    console.log(this.auth);
+    
+  }
 
   ngOnInit() {
   }

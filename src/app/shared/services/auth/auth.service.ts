@@ -1,49 +1,63 @@
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AuthStructure } from './authStructure.class';
 import { CookieService } from 'ngx-cookie';
+import { HttpClient } from '@angular/common/http';
+import * as jwt_decode from "jwt-decode";
+
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import { User, getUserFromToken } from './authStructure.class';
 
 const token_key = 'auth';
+
+const api_url = 'http://localhost:3000/';
 
 @Injectable()
 export class AuthService {
 
-  private user: AuthStructure;
+  public user: User;
   public allowSaveCookie: boolean;
   private interruptedPath: string;
 
-  constructor(private router: Router, private cookieService: CookieService) {
-    this.user = this.cookieService.getObject(token_key);
+  constructor(private router: Router, private cookieService: CookieService, private http: HttpClient) {
+    this.user = this.cookieService.getObject(token_key) as User;
   }
   checkRoute(route: ActivatedRouteSnapshot): Observable<boolean> {
     return new Observable((obs) => {
-      if (!!this.user) { // TODO: check if rout is valid
+      if (!!this.user) {
         obs.next(true);
-        // setTimeout(() => { obs.next(true); }, 2000);
       } else {
-        console.log(route.routeConfig)
         this.interruptedPath = '/'+route.routeConfig.path;
         obs.next(false);
-        // setTimeout(() => { obs.next(false); }, 2000);
       }
     });
+  }
+  public userExists(): boolean{
+    return !!this.user;
   }
   getInterruptedRoute(): string {
     return this.interruptedPath;
   }
-  loginState(): boolean {
-    return !!this.user && !!this.user.email && !!this.user.password;
-  }
-  login(user: AuthStructure, remember: boolean): Observable<boolean> {
-    return new Observable((obs) => {
-      // TODO: real auth
-      this.user = user;
-      if(remember) {
-        this.cookieService.putObject(token_key, this.user);
+  login(email: string, password: string, remember: boolean): Observable<boolean> {
+    return this.http.post(api_url+'auth/login',
+      {email: email, password: password}
+    ).map(
+      (data: {token: string, message: string}) => {
+        if(!data.token) {
+          throw new Error(!!data.message? data.message: '500: Server error');
+        }
+        this.user = getUserFromToken(data.token);
+        console.log(this.user);
+        
+        if(remember) {
+          this.cookieService.putObject(token_key, this.user);
+          console.log(this.cookieService.getAll());
+          
+        }
+        return true;
       }
-      obs.next(!!user && !!user.email && !!user.password);
-    });
+    )
   }
   logout() {
     // TODO: real logout

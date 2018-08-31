@@ -6,4 +6,8 @@
     width: 400px;
     left: calc(50% - 200px);
   }
+  .validation-error {
+    border-color: red;
+    background-color: #fff0f0;
+  }
 }

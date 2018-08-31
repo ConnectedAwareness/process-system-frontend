@@ -2,61 +2,77 @@
   <div class="container">
     <h1 class="title">Profilseite</h1>
     <h2 class="subtitle">
-      Auf dieser Seite können Sie Eigenschaften ihres Profils und ihrer Organisation einsehen und bearbeiten.
+      Auf dieser Seite können Sie Eigenschaften ihres Profils und ihrer Organisationen einsehen und bearbeiten.
     </h2>
     <div class="columns">
       <div class="column is-half">
         <div class="content">
           <h3>Mein Profil</h3>
           <p>
-            <b>Id:</b> 201361
+            <b>Id:</b> {{auth.user.userId}}
           </p>
           <p>
-            <b>Vorname:</b> Erwin
+            <b>Vorname:</b> {{auth.user.firstName}}
           </p>
           <p>
-            <b>Nachname:</b> Erwinson
+            <b>Nachname:</b> {{auth.user.lastName}}
           </p>
           <p>
-            <b>Email:</b> erwin_erwinson@verbew.de
+            <b>Email:</b> {{auth.user.email}}
           </p>
           <p>
-            <b>Alias:</b> DoppleE
-          </p>
-          <p>
-            <b>Rollen:</b>
-            <span class="tag is-primary">
-              Rolle 1
-            </span>
-            <span class="tag is-primary">
-              Rolle 2
+            <b>Capabilities:</b>
+            <span *ngFor="let capability of auth.user.capabilities" class="tag is-primary">
+              {{capability}}
             </span>
           </p>
+          <h3>Password</h3>
+          <a class="button is-primary">zurücksetzen</a>
         </div>
       </div>
       <div class="column is-half">
         <div class="content">
-          <h3>Meine Organisation</h3>
-          <p>
-            <b>Id:</b> 12
-          </p>
-          <p>
-            <b>Name:</b> Verbundenes Bewusstsein
-          </p>
-          <p>
-            <b>Coordinator:</b> Ich
-          </p>
-          <p>
-            <b>Aktuelle Version:</b> 1.1.1
-          </p>
-          <p>
-            <b>User:</b> 30
-          </p>
-          <p>
-            <b>Beteiligte User:</b> 20
-          </p>
+          <h3>Meine Organisationen</h3>
+          <span *ngFor="let rolesInOrganisation of auth.user.rolesInOrganisations">
+            <h4>{{rolesInOrganisation.organisationName}}</h4>
+            <p>
+              <b>UserRole:</b>
+              <span *ngFor="let userRole of rolesInOrganisation.userRoles" class="tag is-primary">
+                {{userRole}}
+              </span>
+            </p>
+          </span>
         </div>
       </div>
     </div>
   </div>
 </section>
+<!-- <div class="fullscreen-overlay">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        Component
+      </p>
+      <a href="#" class="card-header-icon" aria-label="more options">
+        <span class="icon">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </a>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+        <a href="#">@bulmaio</a>.
+        <a href="#">#css</a>
+        <a href="#">#responsive</a>
+        <br>
+        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <a href="#" class="card-footer-item">Save</a>
+      <a href="#" class="card-footer-item">Edit</a>
+      <a href="#" class="card-footer-item">Delete</a>
+    </footer>
+  </div>
+</div> -->
