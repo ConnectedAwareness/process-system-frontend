@@ -27,7 +27,7 @@
             </span>
           </p>
           <h3>Password</h3>
-          <a class="button is-primary" (click)="inResetMode=true">zurücksetzen</a>
+          <a class="button is-primary" (click)="resetMode(true)">zurücksetzen</a>
         </div>
       </div>
       <div class="column is-half">
@@ -73,9 +73,11 @@
         <div class="field">
             
           <p class="control">
-             
+            <button (click)="resetMode(false)" class="button is-secondary">
+              Abbrechen
+            </button>
             <button type="submit" [disabled]="restModel.invalid" class="button is-primary">
-              Login
+              Senden
             </button>
           </p>
         </div>

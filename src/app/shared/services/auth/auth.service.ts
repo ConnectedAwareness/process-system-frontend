@@ -3,29 +3,28 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { CookieService } from 'ngx-cookie';
 import { HttpClient } from '@angular/common/http';
-import * as jwt_decode from "jwt-decode";
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { User, getUserFromToken } from './authStructure.class';
+import { Token, getTokenObject } from '../../../classes/auth/token.dto';
 
-const token_key = 'auth';
+const token_key = 'token';
 
 const api_url = 'http://localhost:3000/';
 
 @Injectable()
 export class AuthService {
 
-  public user: User;
+  public token: Token;
   public allowSaveCookie: boolean;
   private interruptedPath: string;
 
   constructor(private router: Router, private cookieService: CookieService, private http: HttpClient) {
-    this.user = this.cookieService.getObject(token_key) as User;
+    this.token = this.cookieService.getObject(token_key) as Token;
   }
   checkRoute(route: ActivatedRouteSnapshot): Observable<boolean> {
     return new Observable((obs) => {
-      if (!!this.user) {
+      if (!!this.token) {
         obs.next(true);
       } else {
         this.interruptedPath = '/'+route.routeConfig.path;
@@ -33,8 +32,8 @@ export class AuthService {
       }
     });
   }
-  public userExists(): boolean{
-    return !!this.user;
+  public tokenExists(): boolean{
+    return !!this.token;
   }
   getInterruptedRoute(): string {
     return this.interruptedPath;
@@ -47,12 +46,10 @@ export class AuthService {
         if(!data.token) {
           throw new Error(!!data.message? data.message: '500: Server error');
         }
-        this.user = getUserFromToken(data.token);
+        this.token = getTokenObject(data.token);
         
         if(remember) {
-          this.cookieService.putObject(token_key, this.user);
-          console.log(this.cookieService.getAll());
-          
+          this.cookieService.putObject(token_key, this.token);
         }
         return true;
       }
@@ -60,11 +57,29 @@ export class AuthService {
   }
   logout() {
     // TODO: real logout
-    this.user = null;
+    this.token = null;
     this.cookieService.remove(token_key);
     this.router.navigate(['/login']);
   }
-  requestData() {
-
+  get(url: string): Observable<any> {
+    // send Token
+    if (!this.token) {
+      throw new Error('Token does not exist!');
+    }
+    return this.http.get(url);
+  }
+  post(url: string, options: any): Observable<any> {
+    // send Token
+    if (!this.token) {
+      throw new Error('Token does not exist!');
+    }
+    return this.http.post(url, options);
+  }
+  put(url: string, options: any): Observable<any> {
+    // send Token
+    if (!this.token.tokenString) {
+      throw new Error('Token does not exist!');
+    }
+    return this.http.put(url, options);
   }
 }

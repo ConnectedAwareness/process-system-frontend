@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { OrganisationListPageComponent } from './organisation-list-page.component';
+import { VersionListPageComponent } from './version-list-page.component';
 
-describe('OrganisationListPageComponent', () => {
-  let component: OrganisationListPageComponent;
-  let fixture: ComponentFixture<OrganisationListPageComponent>;
+describe('VersionListPageComponent', () => {
+  let component: VersionListPageComponent;
+  let fixture: ComponentFixture<VersionListPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrganisationListPageComponent ]
+      declarations: [ VersionListPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OrganisationListPageComponent);
+    fixture = TestBed.createComponent(VersionListPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

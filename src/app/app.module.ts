@@ -12,8 +12,6 @@ import { CookieModule } from 'ngx-cookie';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { OrganisationService } from './shared/services/organisation.service';
-import { UserService } from './shared/services/user.service';
 import { DynamicModule } from './shared/data-mgmt/dynamic/dynamic.module';
 
 // Pages
@@ -23,11 +21,13 @@ import { LoginPageComponent } from './pages/login/login-page.component';
 import { ProfilePageComponent } from './pages/profile/profile-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { EditComponent } from './shared/components/edit/edit.component';
+import { VersionListPageComponent } from './pages/data-management/version-list/version-list-page.component';
 
 const pageComponents = [
   MainPageComponent,
   LoginPageComponent,
-  ProfilePageComponent
+  ProfilePageComponent,
+  VersionListPageComponent
 ]
 
 @NgModule({
@@ -54,7 +54,7 @@ const pageComponents = [
     DynamicModule
   ],
   entryComponents: [],
-  providers: [AuthService, OrganisationService, UserService, AuthGuard],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

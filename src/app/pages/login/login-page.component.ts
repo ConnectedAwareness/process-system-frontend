@@ -13,7 +13,7 @@ export class LoginPageComponent implements OnInit {
   loginForm: FormGroup;
   constructor(private auth: AuthService, private router: Router) {
     this.model = {};
-    if (this.auth.userExists) {
+    if (this.auth.tokenExists) {
       this.navigateToNextPage();
     }
   }

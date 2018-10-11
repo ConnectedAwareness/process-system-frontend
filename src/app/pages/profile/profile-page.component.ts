@@ -33,6 +33,11 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  resetMode(open: boolean) {
+    this.inResetMode = open;
+    // TODO: reset Form
+  }
+
   reset(){
     if(!this.restModel.confirmation || !this.restModel.newPassword || !this.restModel.oldPassword) {
       this.resetError = new Error('Eines der Felder ist nicht ausgefüllt worden');
@@ -43,24 +48,27 @@ export class ProfilePageComponent implements OnInit {
       return;
     }
     if(this.restModel.confirmation != this.restModel.newPassword) {
-      this.resetError = new Error('Bitter Bestätigen sie das Passwort');
+      this.resetError = new Error('Bitte Bestätigen sie das Passwort');
       this.restModel.confirmation = '';
       this.restModel.newPassword = '';
       return;
     }
-    this.resetError = null;
-    this.inResetMode = false;
-    
     this.http.post('http://localhost:3000/users/resetpassword',
       {
-        userId: this.auth.user.userId,
-        password: this.restModel.newPassword
+        userId: this.auth.token.userId,
+        newPassword: this.restModel.newPassword,
+        oldPassword: this.restModel.oldPassword
       }
     ).subscribe((data)=>{
       if(data) {
         this.inResetMode = false;
+        this.resetError = null;
+        this.restModel.oldPassword = '';
+        this.restModel.newPassword = '';
+        this.restModel.confirmation = '';
       }
     }, (err)=>{
+      this.resetError = err;
       this.restModel.oldPassword = '';
       this.restModel.newPassword = '';
       this.restModel.confirmation = '';

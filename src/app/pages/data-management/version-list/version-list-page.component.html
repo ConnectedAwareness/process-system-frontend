@@ -1,0 +1,61 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Versionenseite</h1>
+    <h2 class="subtitle">
+      Auf dieser Seite können sie alle Versionen des Prozessdokuments einsehen und bearbeiten.
+    </h2>
+
+    <div class="columns">
+      <div class="column">
+        <table class="table is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Versionsnummer</th>
+              <th>Veröffentlicht</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let v of versions" [ngClass]="{'is-selected' : v == selectedVersion}" (click)="onClick(v)">
+              <th>{{v.versionId}}</th>
+              <th>{{v.published}}</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="column">
+        <a class="button" (click)="inCreate = true">neue Version</a>
+        <a class="button" *ngIf="selectedVersion">öffnen</a>
+        <a class="button" *ngIf="selectedVersion">entfernen</a>
+        <a class="button" *ngIf="selectedVersion && !selectedVersion.published">veröffentlichen</a>
+        <input type="file" name="tsv importieren" accept=".tsv" ngModel (change)="importTSV($event)">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section window" *ngIf="inCreate">
+  <div class="card">
+    <div class="card-content">
+      <form #createVersionForm="ngForm" (ngSubmit)="createNewVersion(createVersionForm.form.value.versionId);">
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input type="text" name="versionId" placeholder="versionsnummer" ngModel #versionId="ngModel">
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-text" (click)="inCreate = false">abbrechen</button>
+            </div>
+            <div class="control">
+              <button class="button is-link" type="submit">erstellen</button>
+            </div>
+          </div>
+        <!-- 
+        <a class="button" (click)="inCreate = false">abbruch</a>
+        <button >erstellen</button> -->
+      </form>
+
+    </div>
+  </div>
+</section>
