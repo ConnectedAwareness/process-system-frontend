@@ -16,15 +16,17 @@ import { DynamicModule } from './shared/data-mgmt/dynamic/dynamic.module';
 
 // Pages
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
-import { MainPageComponent } from './pages/main/main-page.component';
+import { DashboardPageComponent } from './pages/dashboard/dashboard-page.component';
 import { LoginPageComponent } from './pages/login/login-page.component';
 import { ProfilePageComponent } from './pages/profile/profile-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { EditComponent } from './shared/components/edit/edit.component';
 import { VersionListPageComponent } from './pages/data-management/version-list/version-list-page.component';
+import { Http, HttpModule } from '@angular/http';
+import { DashboardService } from './pages/dashboard/dashboard.service';
 
 const pageComponents = [
-  MainPageComponent,
+  DashboardPageComponent,
   LoginPageComponent,
   ProfilePageComponent,
   VersionListPageComponent
@@ -51,10 +53,11 @@ const pageComponents = [
     // ),
     AppRoutingModule,
     CookieModule.forRoot(),
-    DynamicModule
+    DynamicModule,
+    HttpModule
   ],
   entryComponents: [],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
