@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { AuthService } from './../../shared/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 @Component({
   selector: 'ca-login-page',
   templateUrl: './login-page.component.html',
@@ -33,8 +32,6 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit() {
       this.auth.login(this.model.email, this.model.password, !!this.model.remember).subscribe((res) => {
-        console.log(this.auth.user);
-        
         if (res) {
           this.navigateToNextPage();
         }

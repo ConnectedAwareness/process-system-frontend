@@ -53,7 +53,7 @@ export class ProfilePageComponent implements OnInit {
       this.restModel.newPassword = '';
       return;
     }
-    this.http.post('http://localhost:3000/users/resetpassword',
+    this.http.post('users/resetpassword',
       {
         userId: this.auth.token.userId,
         newPassword: this.restModel.newPassword,

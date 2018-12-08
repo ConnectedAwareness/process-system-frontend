@@ -24,6 +24,7 @@ import { EditComponent } from './shared/components/edit/edit.component';
 import { VersionListPageComponent } from './pages/data-management/version-list/version-list-page.component';
 import { Http, HttpModule } from '@angular/http';
 import { DashboardService } from './pages/dashboard/dashboard.service';
+import { httpInterceptorProviders } from './http-interceptors';
 
 const pageComponents = [
   DashboardPageComponent,
@@ -57,7 +58,7 @@ const pageComponents = [
     HttpModule
   ],
   entryComponents: [],
-  providers: [AuthService, AuthGuard, DashboardService],
+  providers: [AuthService, AuthGuard, DashboardService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

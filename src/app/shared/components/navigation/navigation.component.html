@@ -1,23 +1,11 @@
-<nav class="navbar is-primary">
-    <div class="navbar-brand">
-      <a class="navbar-item"  routerLink="main">
-        <img src="assets/images/logo.svg" alt="">
-      </a>
-    </div>
-    <div id="navbarExampleTransparentExample" class="navbar-menu is-active">
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="field is-grouped">
-            <p class="control" *ngIf="!!this.auth.token">
-              <button class="button is-primary" (click)="this.auth.logout()">
-                <!-- <span class="icon"><i class="material-icons">face</i></span> -->
-                <span>
-                  Logout
-                </span>
-              </button>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
+<nav>
+  <a routerLink="main">
+    <img src="assets/images/logo.svg" alt="">
+  </a>
+  <button *ngIf="!!this.auth.token" class="button" (click)="this.auth.logout()">
+    <!-- <span class="icon"><i class="material-icons">face</i></span> -->
+    <span>
+      Logout
+    </span>
+  </button>
+</nav>

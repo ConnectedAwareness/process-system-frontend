@@ -24,10 +24,9 @@
       </div>
       <div class="column">
         <a class="button" (click)="inCreate = true">neue Version</a>
-        <a class="button" *ngIf="selectedVersion">öffnen</a>
-        <a class="button" *ngIf="selectedVersion">entfernen</a>
-        <a class="button" *ngIf="selectedVersion && !selectedVersion.published">veröffentlichen</a>
-        <input type="file" name="tsv importieren" accept=".tsv" ngModel (change)="importTSV($event)">
+        <a class="button" *ngIf="!!selectedVersion">öffnen</a>
+        <a class="button" *ngIf="!!selectedVersion" (click)="inImport = true">neue Version importieren</a>
+        <a class="button" *ngIf="!!selectedVersion && !selectedVersion.published">veröffentlichen</a>
       </div>
     </div>
   </div>
@@ -51,9 +50,30 @@
               <button class="button is-link" type="submit">erstellen</button>
             </div>
           </div>
-        <!-- 
-        <a class="button" (click)="inCreate = false">abbruch</a>
-        <button >erstellen</button> -->
+      </form>
+
+    </div>
+  </div>
+</section>
+<section class="section window" *ngIf="inImport">
+  <div class="card">
+    <div class="card-content">
+      <form #importVersionForm="ngForm" (ngSubmit)="importTSV(importVersionForm.form.value.tsvImport);">
+        <div class="field">
+          <label class="label">Datei auswählen</label>
+          <div class="control">
+            <input type="file" #file name="tsvImport" accept=".tsv" ngModel>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-text" (click)="inImport = false">abbrechen</button>
+            </div>
+            <div class="control">
+              <button class="button is-link" type="submit">erstellen</button>
+            </div>
+          </div>
       </form>
 
     </div>

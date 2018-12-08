@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../../shared/services/auth/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'ca-version-list-page',
@@ -9,18 +9,21 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 })
 export class VersionListPageComponent implements OnInit {
 
+  @ViewChild('file') file;
+
   private versions: any[];
   private selectedVersion: any;
   private inCreate: boolean;
+  private inImport: boolean;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private http: HttpClient) { }
 
   ngOnInit() {
     this.loadVersions();
   }
 
   loadVersions() {
-    this.auth.get('http://localhost:3000/versions/all/0').subscribe((data) => {
+    this.http.get<any[]>('versions/all/0').subscribe((data) => {
       if (data) {
         this.versions = data;
       }
@@ -35,9 +38,7 @@ export class VersionListPageComponent implements OnInit {
     }
   }
   createNewVersion(versionId: string) {
-    console.log('create: ', versionId);
-
-    this.auth.post('http://localhost:3000/versions/create', {
+    this.http.post('versions/create', {
       versionId: versionId,
       published: false,
       nodes: [],
@@ -47,13 +48,13 @@ export class VersionListPageComponent implements OnInit {
       this.loadVersions();
     })
   }
-  importTSV(e) {
-    if (e.target.files && e.target.files.length === 1) {
-      this.auth.put('http://localhost:3000/import/'+this.selectedVersion.versionId+'/upload', {
-        versionId: this.selectedVersion.versionId,
-        versionFile: e.target.files[0]
-      }).subscribe(res => {
-        console.log('res', res);
+  importTSV() {
+    if (this.file.nativeElement.files && this.file.nativeElement.files.length === 1) {
+      let file = this.file.nativeElement.files[0];
+      let formData = new FormData();
+      formData.append('versionFile', file, file.name)
+      this.http.put('import/'+this.selectedVersion.versionId+'/upload', formData).subscribe(res => {
+        this.inImport = false;
       })
     }
   }

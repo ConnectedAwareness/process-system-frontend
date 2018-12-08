@@ -2,7 +2,7 @@ import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { CookieService } from 'ngx-cookie';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -10,8 +10,6 @@ import { Token, getTokenObject } from '../../../classes/auth/token.dto';
 import { User } from '../../../classes/userMgmt/user.dto';
 
 const token_key = 'token';
-
-const api_url = 'http://localhost:3000/';
 
 @Injectable()
 export class AuthService {
@@ -51,7 +49,7 @@ export class AuthService {
   }
 
   login(email: string, password: string, remember: boolean): Observable<boolean> {
-    return this.http.post(api_url + 'auth/login',
+    return this.http.post('auth/login',
       { email: email, password: password }
     ).map(
       (data: { token: string, message: string }) => {
@@ -78,7 +76,7 @@ export class AuthService {
   public initClientData(token: Token): Observable<boolean> {
     if(!token) return;
     this.token = token;
-    return this.get('users/'+token.userId).map(user=>{
+    return this.http.get('users/'+token.userId).map(user=>{
       this.user = new User().deserialize(user);
       return true;
     })
@@ -88,25 +86,11 @@ export class AuthService {
     return this.asyncUser;
   }
 
-  get(url: string): Observable<any> {
-    // TODO: send Token
-    if (!this.token) {
-      throw new Error('Token does not exist!');
-    }
-    return this.http.get(api_url + url);
+  public tokenExists(): boolean {
+    return !!this.token && !!this.token.tokenString;
   }
-  post(url: string, options: any): Observable<any> {
-    // TODO: send Token
-    if (!this.token) {
-      throw new Error('Token does not exist!');
-    }
-    return this.http.post(api_url+url, options);
-  }
-  put(url: string, options: any): Observable<any> {
-    // TODO: send Token
-    if (!this.token) {
-      throw new Error('Token does not exist!');
-    }
-    return this.http.put(url, options);
+
+  public setTokenHeader(headers: HttpHeaders): HttpHeaders{
+    return headers.set('Authorization', 'bearer ' + this.token.tokenString)
   }
 }
