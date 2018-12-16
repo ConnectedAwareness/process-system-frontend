@@ -1,13 +1,8 @@
-<section class="section">
-  <div class="container">
-    <h1 class="title">Herzlich Willkommen, {{this.auth.user.firstName}}!</h1>
-    <h2 class="subtitle">
-      Auf dieser Seite befinden sich Verweise auf folgende Aktionen:
-    </h2>
-    <div class="container" *ngFor="let field of organisation_fields">
+<section>
+    <div *ngFor="let field of organisation_fields">
         <h2 *ngIf="organisation_fields.length > 2" class="is-size-4">{{field.organisationName}}</h2>
       <div class="gallery">
-        <a class="box" *ngFor="let link of field.links" routerLink="/{{link.link}}" [ngClass]="{'disabled' : !link.implemented}">
+        <a class="gallery-element" *ngFor="let link of field.links" routerLink="/{{link.link}}" [ngClass]="{'disabled' : !link.implemented}">
           <h3>{{link.title}}</h3>
           <p class="content">
             {{link.description}}
@@ -15,5 +10,11 @@
         </a>
       </div>
     </div>
-  </div>
 </section>
+<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a
+<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a
+<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a
+<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a
+<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a
+<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a
+<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a

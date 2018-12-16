@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavigationComponent } from './shared/components/navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  name: string = null;
-  password: string = null;
+  
+  @ViewChild('navbarComponent') navbarComponent: NavigationComponent;
 
   constructor(
     private router: Router
   ) { }
+
+  private hideNavbarMenu() {
+    this.navbarComponent.menuIsOpen = false;
+  }
 
   ngOnInit() {
   }

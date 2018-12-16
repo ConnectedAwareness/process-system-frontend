@@ -1,25 +1,31 @@
 import { AuthService } from './../../services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {Router} from '@angular/router';
-
-enum BodyState {
-  open = 'open',
-  close = 'close',
-  inClose = 'inClose', // in-animation
-  inOpen = 'inOpen' // in-animation
-}
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ca-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
+
+  public menuIsOpen = false;
+  private maxWidth = 104;
+  private minWidth = 52;
+  private minOffsetY = 104;
+  protected logoWidth = this.maxWidth;
+
 
   constructor(private router: Router, private auth: AuthService) {
+    this.onWindowScroll();
   }
 
-  ngOnInit() {
+  private toggle() {
+    this.menuIsOpen = !this.menuIsOpen;
+  }
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    this.logoWidth = Math.max(this.minWidth, ((this.minWidth-this.maxWidth)/this.minOffsetY)*window.pageYOffset+this.maxWidth);
   }
 }

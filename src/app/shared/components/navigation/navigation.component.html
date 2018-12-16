@@ -1,11 +1,16 @@
-<nav>
-  <a routerLink="main">
-    <img src="assets/images/logo.svg" alt="">
-  </a>
-  <button *ngIf="!!this.auth.token" class="button" (click)="this.auth.logout()">
-    <!-- <span class="icon"><i class="material-icons">face</i></span> -->
-    <span>
-      Logout
-    </span>
-  </button>
+<nav *ngIf="!!this.auth.token">
+  <a routerLink="/main"><img id="logo" src="assets/images/logo_farbe.svg" [ngStyle]="{'width': logoWidth+'px'}" alt="logo connected awareness"></a>
+  <button (click)="toggle()"><i class="material-icons">person</i></button>
+  <ul *ngIf="menuIsOpen">
+    <li>
+      <a routerLink="/profile" (click)="toggle()">Profil</a>
+    </li>
+    <li>
+        <a  class="logout" (click)="this.auth.logout(); toggle();">Logout</a>
+    </li>
+  </ul>
 </nav>
+
+<!-- <a routerLink="main">
+    <img src="assets/images/logo.svg" alt="">
+  </a> -->

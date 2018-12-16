@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap'
 import { Token, getTokenObject } from '../../../classes/auth/token.dto';
 import { User } from '../../../classes/userMgmt/user.dto';
 
@@ -27,18 +28,20 @@ export class AuthService {
     private http: HttpClient
   ) {}
 
-  // TODO: Zugriffsrechte checken
   checkRoute(route: ActivatedRouteSnapshot): Observable<boolean> {
-    console.log('checkRoute');
-    
+    console.log(route);
     return new Observable((obs) => {
-      if (!this.user) {
-        this.initClientData(this.cookieService.getObject(token_key) as Token).subscribe((res)=>{
-          // TODO Validate
+      let token = this.cookieService.getObject(token_key) as Token;
+      if (!this.user && !!token) {
+        this.initClientData(token).subscribe((res)=>{
+          if(!res) 
+            this.interruptedPath = route.routeConfig.path;
           obs.next(res);
         });
+      } else if (!this.user && !token) {
+        this.interruptedPath = route.routeConfig.path;
+        obs.next(false);
       } else {
-        // TODO Validate
         obs.next(true);
       }
     });
@@ -51,24 +54,25 @@ export class AuthService {
   login(email: string, password: string, remember: boolean): Observable<boolean> {
     return this.http.post('auth/login',
       { email: email, password: password }
-    ).map(
-      (data: { token: string, message: string }) => {
-        if (!data.token) {
-          throw new Error(!!data.message ? data.message : '500: Server error');
+    ).mergeMap((value: { token: string, message: string }, index: number) => {
+        if (!value.token) {
+          throw new Error(!!value.message ? value.message : '500: Server error');
         }
-        this.initClientData(getTokenObject(data.token));
-
+        let tokenObj = getTokenObject(value.token);
+        console.log('tokenObj', tokenObj);
         if (remember) {
+          console.log('remember');
+          
           this.cookieService.putObject(token_key, this.token);
         }
-        return true;
+        return this.initClientData(tokenObj);
       }
     )
   }
   logout() {
-    // TODO: real logout
     this.token = null;
     this.user = null;
+    this.interruptedPath = null;
     this.cookieService.remove(token_key);
     this.router.navigate(['/login']);
   }

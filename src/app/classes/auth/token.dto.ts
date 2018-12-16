@@ -16,7 +16,6 @@ export class Token implements IToken, Deserializable {
     if (depth === 0) return null;
     if (!depth) depth = 5;
     Object.assign(this, input);
-    // console.log(input, this);
     
     this.rolesInOrganisations = input.rolesInOrganisations.map(role => new RolesInOrganisation().deserialize(role, --depth));
     return this;

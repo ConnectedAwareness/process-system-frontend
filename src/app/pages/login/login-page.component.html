@@ -1,50 +1,33 @@
+<img id="background" src="assets/images/logo_farbe.svg" alt="logo farbig">
 <div class="card">
+  <h1 class="card-title">Login</h1>
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="card-content">
-      <h1>Login</h1>
+
     <div class="field">
-      <p class="control">
-        <input
-          class="input"
-          type="email"
-          placeholder="Email"
-          required
-          [(ngModel)]="model.email"
-          name="email"
-        >
-      </p>
+      <label class="box-label" for="email">
+        <i class="material-icons">mail_outline</i>
+      </label>
+      <input type="email" placeholder="Email" required [(ngModel)]="model.email" name="email">
     </div>
+
     <div class="field">
-      <p class="control">
-        <input
-          class="input"
-          type="password"
-          placeholder="Password"
-          required
-          [(ngModel)]="model.password"
-          name="password"
-        >
-      </p>
+      <label class="box-label" for="password">
+        <i class="material-icons">lock_outline</i>
+      </label>
+      <input type="password" placeholder="Password" required [(ngModel)]="model.password" name="password">
     </div>
-    <div class="field">
-      <p class="control">
-        <input
-          type="checkbox"
-          name="remember"
-          [(ngModel)]="model.remember"
-        >
-        Anmeldung merken
-      </p>
+
+    <div class="field checkbox-field">
+      <label for="remember">
+        <input type="checkbox" name="remember" id="remember" [(ngModel)]="model.remember">
+        <div class="checkmark"></div>
+        <span class="checkbox-description">Anmeldung merken</span>
+      </label>
     </div>
-    <div class="field">
-      <p class="control">
-        <button class="button is-text">
-          SignUp
-        </button>
-        <button type="submit" [disabled]="loginForm.invalid" class="button is-primary">
-          Login
-        </button>
-      </p>
-      <p class="help is-danger" *ngIf="!!error">{{error.message}}</p>
-    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">
+      LOGIN
+    </button>
+    <!-- <p class="help is-danger" *ngIf="!!error">{{error.message}}</p> -->
   </form>
 </div>

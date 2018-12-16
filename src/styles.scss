@@ -55,34 +55,34 @@
 
 // @import './node_modules/bulma/sass/utilities/_all.sass';
 
-@import "./node_modules/bulma/sass/utilities/initial-variables.sass";
-@import "./node_modules/bulma/sass/utilities/functions.sass";
+// @import "./node_modules/bulma/sass/utilities/initial-variables.sass";
+// @import "./node_modules/bulma/sass/utilities/functions.sass";
 
 // $turquoise: red;
 // $primary: #efefef;//#879797;
-$primary: #1fca39;
+// $primary: #1fca39;
 // $primary-invert: #8b9a9a;
 // $primary-invert: #8b9a9a;
 
-$success: #6e8b1f;
-$success-invert: #fff;
+// $success: #6e8b1f;
+// $success-invert: #fff;
 
-$info: #6390b0;
-$info-light: #d0e6f6;
-$info-invert: #fff;
+// $info: #6390b0;
+// $info-light: #d0e6f6;
+// $info-invert: #fff;
 
-$danger: #ab4b52;
-$danger-invert: #fff;
+// $danger: #ab4b52;
+// $danger-invert: #fff;
 
-$warning: #f8b132;
-$warning-invert: #000;
+// $warning: #f8b132;
+// $warning-invert: #000;
 
 // $dark-grey-transparent: #00000010;
 
-@import "./node_modules/bulma/sass/utilities/derived-variables.sass";
-@import "./node_modules/bulma/sass/utilities/animations.sass";
-@import "./node_modules/bulma/sass/utilities/mixins.sass";
-@import "./node_modules/bulma/sass/utilities/controls.sass";
+// @import "./node_modules/bulma/sass/utilities/derived-variables.sass";
+// @import "./node_modules/bulma/sass/utilities/animations.sass";
+// @import "./node_modules/bulma/sass/utilities/mixins.sass";
+// @import "./node_modules/bulma/sass/utilities/controls.sass";
 // @import 'bulma/config/variables';
 // @import 'bulma/config/generated-variables';
 
@@ -93,9 +93,9 @@ $warning-invert: #000;
 // $blue: #72d0eb; // Update blue
 // $pink: #ffb3b3; // Add pink
 // $family-serif: 'Georgia', serif; // Add a serif family
-.icon span{
-    font-family: 'Material Icons';
-}
+// .icon span{
+//     font-family: 'Material Icons';
+// }
 
 // @import 'bulma/config/generated-variables';
 
@@ -110,9 +110,12 @@ $warning-invert: #000;
 // @import './node_modules/bulma/sass/elements/_all.sass';
 // @import './node_modules/bulma/sass/components/_all.sass';
 // @import './node_modules/bulma/sass/layout/_all.sass';
-@import './node_modules/bulma/bulma.sass';
-
+// @import './node_modules/bulma/bulma.sass';
+@import './node_modules/material-icons/css/material-icons.scss';
+@import './styles/normalize.scss';
+@import './styles/colors.scss';
 html {
-  background-color: $light;
+  background-color: $grey-02;
+  font-family: roboto;
+  overflow-y: scroll;
 }
-

@@ -12,13 +12,12 @@ import { DashboardService } from './dashboard.service';
 export class DashboardPageComponent implements OnInit{
 
   private organisation_fields: OrganisationField[];
+  private title = "Herzlich Willkommen, {{this.auth.user.firstName}}!";
+  private subtitle = 'Auf dieser Seite befinden sich Verweise auf folgende Aktionen:';
 
 
-  constructor(private auth: AuthService, private dashboardService: DashboardService) {
-    console.log(this.auth);
-  }
+  constructor(private auth: AuthService, private dashboardService: DashboardService) {}
   ngOnInit(){
     this.organisation_fields = this.dashboardService.getDashboardConfig(this.auth.user);
-    console.log(this.organisation_fields);
   }
 }

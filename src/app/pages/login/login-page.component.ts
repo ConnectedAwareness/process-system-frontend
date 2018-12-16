@@ -33,6 +33,8 @@ export class LoginPageComponent implements OnInit {
   onSubmit() {
       this.auth.login(this.model.email, this.model.password, !!this.model.remember).subscribe((res) => {
         if (res) {
+          console.log('navigate');
+          
           this.navigateToNextPage();
         }
       }

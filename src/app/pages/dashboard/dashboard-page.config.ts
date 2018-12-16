@@ -10,6 +10,7 @@ export class DashboardLink {
   constructor(
     public title: string,
     public link: string,
+    public img: string,
     public roles: UserRole[],
     public capabilities: UserCapability[],
     public description: string,
@@ -22,6 +23,7 @@ export const links: DashboardLink[] = [
   new DashboardLink(
     'Profilseite',
     'profile',
+    '',
     [],
     [],
     'Auf dieser Seite können Sie Eigenschaften ihres Profils und ihrer Organisation einsehen und bearbeiten',
@@ -29,12 +31,14 @@ export const links: DashboardLink[] = [
   ), new DashboardLink(
     'Versionenseite',
     'versions',
+    '',
     [],
     [],
     'Auf dieser Seite können sie alle Versionen des Prozessdokuments einsehen und bearbeiten.',
     true
   ), new DashboardLink(
     'Prozessdokument',
+    '',
     '',
     [UserRole.Connectee],
     [],
@@ -43,12 +47,14 @@ export const links: DashboardLink[] = [
   ), new DashboardLink(
     'Prozesskoordinator einladen',
     '',
+    '',
     [UserRole.Connector],
     [],
     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
     false
   ), new DashboardLink(
     'Connectees einladen',
+    '',
     '',
     [UserRole.ProcessCoordinator],
     [],

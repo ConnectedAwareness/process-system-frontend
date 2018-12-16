@@ -1,27 +1,98 @@
 @import "./../../../../styles";
 
+// :host {
+//   position: fixed;
+//   width: 100%;
+//   z-index: 100000;
+// }
+
+
 :host {
+}
+:host button {
   position: fixed;
-  width: 100%;
+  top: 16px;
+  right: 16px;
   z-index: 100000;
 }
-
-nav {
-  display: grid;
-  grid-template-columns: 52px 1fr;
-  grid-template-rows: 52px;
-  background-color: $primary;
-  a {
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
-    padding: 12px;
-    &:hover {
-      background-color: #1fbb37;
-    }
+:host button {
+  $size: 52px;
+  border: 0;
+  width: $size;
+  height: $size;
+  padding: 10px;
+  background-color: $green-06;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 3px;
+  cursor: pointer;
+  &:hover {
+    background-color: $green-07;
   }
-  button {
-    justify-self: right;
-    margin: 8px;
-    border: none;
+  i {
+    font-size: $size - 20px;
+    color: white;
+  }
+  &:focus {
+    outline: none;
   }
 }
+:host ul {
+  position: fixed;
+  top: 84px;
+  right: 16px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 26px;
+  width: 150px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 3px;
+  li {
+    display: block;
+    background-color: white;
+    width: 100%;
+    &:not(:last-child){
+      border-bottom: 1px solid $grey-02;
+    }
+    a {
+      font-size: 16px;
+      text-align: center;
+      display: block;
+      padding: 16px;
+      color: $grey-08;
+      text-decoration: none;
+      &.logout {
+        color: $red-06;
+        cursor: pointer;
+      }
+      &:hover {
+        background-color:rgba(229, 232, 232, 0.10);
+      }
+    }
+  }
+}
+
+:host #logo {
+  display: block;
+  width: 104px;
+  margin: 16px;
+  position: fixed;
+}
+// nav {
+//   display: grid;
+//   grid-template-columns: 52px 1fr;
+//   grid-template-rows: 52px;
+//   background-color: $primary;
+//   a {
+//     grid-row: 1 / 2;
+//     grid-column: 1 / 2;
+//     padding: 12px;
+//     &:hover {
+//       background-color: #1fbb37;
+//     }
+//   }
+//   button {
+//     justify-self: right;
+//     margin: 8px;
+//     border: none;
+//   }
+// }
